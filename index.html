@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Web Page</title>
+</head>
+<body>
+  <h1>Loading...</h1>
+
+  <script>
+    // Load XML and XSLT files
+    var xhrXML = new XMLHttpRequest();
+    var xhrXSL = new XMLHttpRequest();
+    xhrXML.open('GET', 'data.xml');
+    xhrXSL.open('GET', 'style.xsl');
+
+    xhrXML.onreadystatechange = function() {
+      if (xhrXML.readyState === 4 && xhrXML.status === 200) {
+        xhrXSL.onreadystatechange = function() {
+          if (xhrXSL.readyState === 4 && xhrXSL.status === 200) {
+            // Transform XML using XSLT
+            var xsltProcessor = new XSLTProcessor();
+            xsltProcessor.importStylesheet(xhrXSL.responseXML);
+            var resultDocument = xsltProcessor.transformToDocument(xhrXML.responseXML);
+            document.body.innerHTML = resultDocument.documentElement.innerHTML;
+          }
+        };
+        xhrXSL.send();
+      }
+    };
+
+    xhrXML.send();
+  </script>
+</body>
+</html>

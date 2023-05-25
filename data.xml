@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <title>My Web Page</title>
+  <content>
+    <section>
+      <heading>About Me</heading>
+      <paragraph>I am a web developer.</paragraph>
+    </section>
+    <section>
+      <heading>Skills</heading>
+      <paragraph>HTML, CSS, JavaScript</paragraph>
+    </section>
+  </content>
+</data>
